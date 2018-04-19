@@ -1,8 +1,10 @@
 package forTpl
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -67,4 +69,47 @@ func GenerateSKUID(skuid string, maxid int64) string {
 	}
 	skuid += fmt.Sprintf("%d", maxid)
 	return skuid
+}
+
+//获取集合点A&B
+type PointInfo struct {
+	Name   string `json:"name"`
+	Latlng string `json:"latlng"`
+}
+
+func GetRellyStr(points string) (pointA, pointB string) {
+	var data map[string]PointInfo
+	if err := json.Unmarshal([]byte(points), &data); err != nil {
+		return
+	} else {
+		pointA = data["A"].Name + " 坐标:" + data["A"].Latlng
+		if len(data) > 1 {
+			pointB = data["B"].Name + " 坐标:" + data["B"].Latlng
+		}
+	}
+	return
+}
+
+func GetRellyPoints(pointA, pointB string) (re string) {
+
+	points := make(map[string]PointInfo)
+	var point PointInfo
+	a := strings.Split(pointA, "坐标:")
+	b := strings.Split(pointB, "坐标:")
+	if len(a) == 1 {
+		return
+	}
+	point.Name = a[0]
+	point.Latlng = a[1]
+
+	points["A"] = point
+	if len(b) > 1 {
+		point.Name = b[0]
+		point.Latlng = b[1]
+		points["B"] = point
+	}
+
+	j, _ := json.Marshal(points)
+	re = string(j)
+	return
 }
