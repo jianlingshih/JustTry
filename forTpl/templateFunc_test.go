@@ -7,10 +7,15 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func Test_GetPeriodByLesson(t *testing.T) {
-	cc, _, _ := GetPeriodByLesson(1523967273)
+func Test_GenerateSKUID(t *testing.T) {
+	cc := GenerateSKUID("S", 0)
 	beego.Debug("Hello World!", cc)
 }
+
+// func Test_GetPeriodByLesson(t *testing.T) {
+// 	cc, _, _ := GetPeriodByLesson(1523967273)
+// 	beego.Debug("Hello World!", cc)
+// }
 
 // func Test_GetDateHM(t *testing.T) {
 // 	cc := GetDateHM(1523967273)

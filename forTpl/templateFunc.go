@@ -1,6 +1,7 @@
 package forTpl
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 )
@@ -55,4 +56,15 @@ func GetPeriodByLesson(timestamp int64) (period string, start int64, end int64) 
 		period += "A"
 	}
 	return
+}
+
+//初始化ID号
+func GenerateSKUID(skuid string, maxid int64) string {
+	maxid++
+	maxlen := 5 - len(fmt.Sprintf("%d", maxid))
+	for i := 0; i < maxlen; i++ {
+		skuid += "0"
+	}
+	skuid += fmt.Sprintf("%d", maxid)
+	return skuid
 }
