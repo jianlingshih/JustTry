@@ -3,10 +3,21 @@ package forTpl
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/astaxie/beego"
 )
+
+func DealWithRegexp() {
+	reg, _ := regexp.Compile("^(\\d+)(\\w+)")
+	if reg.MatchString("20min") == true {
+		submatch := reg.FindStringSubmatch("20min")
+		beego.Debug(submatch[2])
+	}
+}
 
 //转换价格  分==>元
 func GetPrice(price interface{}) string {

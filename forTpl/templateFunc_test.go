@@ -7,8 +7,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func Test_GenerateSKUID(t *testing.T) {
-	GetDateAdd()
+func Test_DealWithRegexp(t *testing.T) {
+	DealWithRegexp()
 	beego.Debug("Hello World!")
 }
 
