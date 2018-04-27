@@ -8,7 +8,8 @@ import (
 )
 
 func Test_DealWithRegexp(t *testing.T) {
-	DealWithRegexp()
+	var c []int
+	RemoveRep(c)
 	beego.Debug("Hello World!")
 }
 

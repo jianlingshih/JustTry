@@ -11,6 +11,23 @@ import (
 	"github.com/astaxie/beego"
 )
 
+//slice 去重
+func RemoveRep(s []int) (result []int) {
+	s = []int{1, 2, 3, 4, 5, 6, 2, 3}
+	start := time.Now()
+	m := make(map[int]bool)
+	for _, v := range s {
+		if _, ok := m[v]; !ok {
+			result = append(result, v)
+			m[v] = true
+		}
+	}
+	fmt.Println("花费时间:", fmt.Sprintf("%vms", (time.Now().UnixNano()-start.UnixNano())/1e+6))
+	beego.Debug(result)
+	return
+}
+
+//正则处理
 func DealWithRegexp() {
 	reg, _ := regexp.Compile("^(\\d+)(\\w+)")
 	if reg.MatchString("20min") == true {
