@@ -8,8 +8,8 @@ import (
 )
 
 func Test_GenerateSKUID(t *testing.T) {
-	cc := GenerateSKUID("S", 0)
-	beego.Debug("Hello World!", cc)
+	GetDateAdd()
+	beego.Debug("Hello World!")
 }
 
 // func Test_GetPeriodByLesson(t *testing.T) {
