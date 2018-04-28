@@ -15,18 +15,6 @@ import (
 	"github.com/astaxie/beego"
 )
 
-//简易转换
-func GetOs(os string) string {
-	var txt string
-	switch os {
-	case "unix":
-		txt = "Unix"
-	case "other":
-		txt = "其他"
-	}
-	return txt
-}
-
 //MD5处理
 func Md5(s string) string {
 	h := md5.New()
@@ -125,6 +113,38 @@ func GetDateHM(timestamp int64) string {
 	}
 	tm := time.Unix(timestamp, 0)
 	return tm.Format("2006-01-02 15:04")
+}
+
+//根据时间戳获取周几
+func GetWeekday(timestamp int64) string {
+	tm2 := time.Unix(timestamp, 0)
+	week := tm2.Weekday().String()
+	weekCN := GetWeekCN(week)
+	return weekCN
+
+}
+func GetWeekCN(weekEn string) string {
+	var txt string
+
+	switch weekEn {
+
+	case "Sunday":
+		txt = "周日"
+	case "Monday":
+		txt = "周一"
+	case "Tuesday":
+		txt = "周二"
+	case "Wednesday":
+		txt = "周三"
+	case "Thursday":
+		txt = "周四"
+	case "Friday":
+		txt = "周五"
+	case "Saturday":
+		txt = "周六"
+	}
+
+	return txt
 }
 
 // GetPeriodByLesson 根据lesson的开课时间获取period 如 201803B

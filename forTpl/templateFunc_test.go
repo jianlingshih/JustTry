@@ -9,7 +9,7 @@ import (
 
 func Test_DealWithRegexp(t *testing.T) {
 
-	beego.Debug("Hello World!", Md5("hello"))
+	beego.Debug("Hello World!", GetWeekday(1523967273))
 }
 
 // func Test_GetPeriodByLesson(t *testing.T) {
