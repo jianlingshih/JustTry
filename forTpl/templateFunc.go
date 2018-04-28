@@ -15,6 +15,18 @@ import (
 	"github.com/astaxie/beego"
 )
 
+//简易转换
+func GetOs(os string) string {
+	var txt string
+	switch os {
+	case "unix":
+		txt = "Unix"
+	case "other":
+		txt = "其他"
+	}
+	return txt
+}
+
 //MD5处理
 func Md5(s string) string {
 	h := md5.New()
