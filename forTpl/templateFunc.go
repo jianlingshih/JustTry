@@ -1,6 +1,7 @@
 package forTpl
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"regexp"
@@ -11,6 +12,15 @@ import (
 
 	"github.com/astaxie/beego"
 )
+
+//base 64 加解密
+func base64Encode(src string) string {
+	return string([]byte(base64.StdEncoding.EncodeToString([]byte(src)))[:])
+}
+func base64Decode(src string) string {
+	re, _ := base64.StdEncoding.DecodeString(src)
+	return string(re[:])
+}
 
 //对map进行排序
 func MapSort() {

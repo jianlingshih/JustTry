@@ -8,8 +8,9 @@ import (
 )
 
 func Test_DealWithRegexp(t *testing.T) {
-	MapSort()
-	beego.Debug("Hello World!")
+	a := base64Encode("test")
+	b := base64Decode(a)
+	beego.Debug("Hello World!", a, b)
 }
 
 // func Test_GetPeriodByLesson(t *testing.T) {
