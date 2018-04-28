@@ -1,7 +1,9 @@
 package forTpl
 
 import (
+	"crypto/md5"
 	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"regexp"
@@ -12,6 +14,13 @@ import (
 
 	"github.com/astaxie/beego"
 )
+
+//MD5处理
+func Md5(s string) string {
+	h := md5.New()
+	h.Write([]byte(s))
+	return hex.EncodeToString(h.Sum(nil))
+}
 
 //base 64 加解密
 func base64Encode(src string) string {
