@@ -225,3 +225,55 @@ func GetRellyPoints(pointA, pointB string) (re string) {
 	re = string(j)
 	return
 }
+
+/** 获取活动详情
+// [{"name":"Safety Check","type":"T1","content":["A10010","A10030","A10035"],"time":10}]
+// var sessioncontent []SessionContent
+// 	err = json.Unmarshal([]byte(content), &sessioncontent)
+
+func GetActivityDetail(sessioncontent []SessionContent, lang string) ([]SessionContentDetail, AthleteNow) {
+	var athleteNow AthleteNow
+	detail := make([]SessionContentDetail, len(sessioncontent))
+	for k, v := range sessioncontent {
+		if v.Type == "T4" {
+			athleteNow.HasAthleteNow = 1
+			athleteNow.AthleteNowId = v.Name
+			y := v.Content.([]interface{})
+			athleteNow.AthleteNowActivity = make([]string, len(y))
+			for i := range y {
+				athleteNow.AthleteNowActivity[i] = y[i].(string)
+			}
+		}
+		count := int64(0)
+		detail[k].Name = v.Name
+		detail[k].Type = v.Type
+		detail[k].Time = v.Time
+		switch v.Content.(type) {
+		case string:
+			var sessionActivity []ActivityDetail
+			activity, _ := GetActivity(v.Content.(string))
+
+			sessionActivity = append(sessionActivity, GetActivityAfterSplited(activity, lang))
+			detail[k].Content = sessionActivity
+		case []interface{}:
+			a := v.Content.([]interface{})
+			sessionActivity := make([]ActivityDetail, len(a))
+			var sign string
+			for i := range a {
+				activity, _ := GetActivity(a[i].(string))
+				sessionActivity[i] = GetActivityAfterSplited(activity, lang)
+				if sign == sessionActivity[i].Skill_lang {
+					sessionActivity[i].Display = "none"
+					count++
+				}
+				sign = sessionActivity[i].Skill_lang
+			}
+			detail[k].Content = sessionActivity
+			detail[k].Rowspan = 2*int64(len(a)) - count
+		}
+
+	}
+	return detail, athleteNow
+
+}
+*/
