@@ -105,6 +105,11 @@ func GetDateAdd() {
 	fmt.Println(k.Add(d * 30))
 
 }
+func GetMidnightTimestamp(day int) (re int64) {
+	t := time.Now()
+	re = time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location()).AddDate(0, 0, day).Unix()
+	return
+}
 
 //根据时间戳获取日期字符创
 func GetDateHM(timestamp int64) string {
