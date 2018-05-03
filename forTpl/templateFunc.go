@@ -184,6 +184,7 @@ func GenerateSKUID(skuid string, maxid int64) string {
 }
 
 //获取集合点A&B
+//{"A":{"name":"上海虹桥国际机场  ","latlng":"31.19668,121.3376"},"B":{"name":"上海长途汽车客运总站  ","latlng":"31.25217,121.45472"}}
 type PointInfo struct {
 	Name   string `json:"name"`
 	Latlng string `json:"latlng"`
