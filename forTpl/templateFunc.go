@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"regexp"
 	"sort"
 	"strconv"
@@ -13,7 +14,19 @@ import (
 	"time"
 
 	"github.com/astaxie/beego"
+	"github.com/zheng-ji/goSnowFlake"
 )
+
+// SnowFlakeId 生成雪花ID
+func SnowFlakeId() int64 {
+	rwork := int64(rand.Intn(100))
+	iw, _ := goSnowFlake.NewIdWorker(rwork)
+	if id, err := iw.NextId(); err != nil {
+		return 0
+	} else {
+		return id
+	}
+}
 
 //MD5处理
 func Md5(s string) string {
