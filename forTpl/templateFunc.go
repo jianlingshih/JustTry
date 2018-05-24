@@ -17,6 +17,13 @@ import (
 	"github.com/zheng-ji/goSnowFlake"
 )
 
+//slice 排序
+func SortMySlice(myslice []int) {
+	sort.Slice(myslice, func(i, j int) bool {
+		return myslice[i] < myslice[j]
+	})
+}
+
 // SnowFlakeId 生成雪花ID
 func SnowFlakeId() int64 {
 	rwork := int64(rand.Intn(100))
