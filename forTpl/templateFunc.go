@@ -17,6 +17,25 @@ import (
 	"github.com/zheng-ji/goSnowFlake"
 )
 
+//slice 去重
+func UniqueSlice(slice *[]string) {
+
+	found := make(map[string]bool)
+
+	total := 0
+
+	for i, val := range *slice {
+		if _, ok := found[val]; !ok {
+			found[val] = true
+			(*slice)[total] = (*slice)[i]
+			total++
+			fmt.Println("i", i)
+			fmt.Println("total", total)
+		}
+	}
+	*slice = (*slice)[:total]
+}
+
 //slice 排序
 func SortMySlice(myslice []int) {
 	sort.Slice(myslice, func(i, j int) bool {
