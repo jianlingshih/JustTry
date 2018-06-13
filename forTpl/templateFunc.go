@@ -11,6 +11,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -269,6 +270,32 @@ func GetRellyPoints(pointA, pointB string) (re string) {
 	j, _ := json.Marshal(points)
 	re = string(j)
 	return
+}
+
+//读写map
+func SyncMapDemo() {
+	var counter = struct {
+		sync.RWMutex
+		m map[string]int
+	}{m: make(map[string]int)}
+
+	go func() {
+		for {
+			counter.RLock()
+			tmp := counter.m["cde"]
+			counter.RUnlock()
+			fmt.Printf("tmp%d\n", tmp)
+
+		}
+	}()
+	go func() {
+		for {
+			counter.Lock()
+			counter.m["cde"] = 2
+			counter.Unlock()
+		}
+	}()
+	select {}
 }
 
 /** 获取活动详情
