@@ -1,12 +1,15 @@
 package forTpl
 
 import (
+	"bufio"
 	"crypto/md5"
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io"
 	"math/rand"
+	"os"
 	"regexp"
 	"sort"
 	"strconv"
@@ -17,6 +20,30 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/zheng-ji/goSnowFlake"
 )
+
+//读取txt文档
+func lineByLine(file string) error {
+	var err error
+
+	f, err := os.Open(file)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	r := bufio.NewReader(f)
+	for {
+		line, err := r.ReadString('\n')
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			fmt.Printf("error reading file %s", err)
+			break
+		}
+		fmt.Print(line)
+	}
+	return nil
+}
 
 //slice 去重
 func UniqueSlice(slice *[]string) {
