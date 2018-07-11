@@ -13,3 +13,7 @@ SELECT  FROM_UNIXTIME(1526217150, '%Y-%m-%d %H:%i:%S')
 
 # 带IF查询
 SELECT *   FROM  `table` WHERE IF(  `parentID` =1,  `plan_id` <10,  `plan_id` >500 ) LIMIT 0 , 30 
+
+# 表空间占用情况查询
+SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS,concat(round((DATA_LENGTH+INDEX_LENGTH)/1024/1024,2), 'MB') as data
+FROM information_schema.tables WHERE TABLE_SCHEMA='tablename' ORDER BY DATA_LENGTH+INDEX_LENGTH desc;
