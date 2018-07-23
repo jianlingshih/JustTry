@@ -227,6 +227,9 @@ func GetDateAdd() {
 	// tmpTime, _ := time.ParseInLocation("2006/01/02 15:04", "2018/06/29 00:00", loc)
 	// fmt.Println(tmpTime.Unix())
 
+	//cc := <-time.After(time.Duration(2) * time.Second)
+	//fmt.Println(cc.Unix())
+
 }
 func GetMidnightTimestamp(day int) (re int64) {
 	t := time.Now()
