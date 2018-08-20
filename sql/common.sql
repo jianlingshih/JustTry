@@ -17,3 +17,6 @@ SELECT *   FROM  `table` WHERE IF(  `parentID` =1,  `plan_id` <10,  `plan_id` >5
 # 表空间占用情况查询
 SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS,concat(round((DATA_LENGTH+INDEX_LENGTH)/1024/1024,2), 'MB') as data
 FROM information_schema.tables WHERE TABLE_SCHEMA='tablename' ORDER BY DATA_LENGTH+INDEX_LENGTH desc;
+
+#更新
+UPDATE cms_customers_order  co inner join (...) tmp on co.orderid=tmp.orderid set co.type=if(co.skuid like 'V%','3',tmp.type)
