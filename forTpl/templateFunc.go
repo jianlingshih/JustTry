@@ -544,3 +544,14 @@ func main() {
 }
 
 */
+
+/*
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", baseUrl, nil)
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36")
+	req.Header.Add("Referer", baseUrl)
+	req.Header.Add("Cookie", "aQQ_ajkguid=59BB9C36-8C3C-ECE9-7FAD-E6F754266399; 58tj_uuid=e30640ec-65a0-4b8b-baee-a1df9f35995a; als=0; _ga=GA1.2.1620601680.1532593507; isp=true; Hm_lvt_c5899c8768ebee272710c9c5f365a6d8=1532660273; __xsptplus8=8.21.1535101389.1535101389.1%233%7Clocalhost%3A8088%7C%7C%7C%7C%23%23tl-5lMDU-uspyEeoljGdU_aJw_-DBU30%23; lps=http%3A%2F%2Fshanghai.anjuke.com%2Fcommunity%2Fminhang%2Fp11%2F%7C; twe=2; sessid=8C2EF86F-E9F8-54AF-9565-46C8FD47EA47; _gid=GA1.2.1150924002.1536224644; wmda_uuid=f15f6c4b61c668905aa1ef35b2754364; wmda_new_uuid=1; wmda_visited_projects=%3B6289197098934; init_refer=; new_uv=26; new_session=0; wmda_session_id_6289197098934=1536242975864-a1f858a6-a736-99cb; ctid=14; ajk_member_captcha=0ffed8fd1a7723d0342557b31a9a6639; ajk_member_id=75149908; ajk_member_name=U15362463912836; ajk_member_key=57af7cc8f0a65f6aa941aae91850f200; ajk_member_time=1567782360; aQQ_ajkauthinfos=7khj3caXaakWZGrKwTZh893%2Bo9IvtkmdykfySt21zqCnf6U7nJ6gXJlfk%2B2wGTcjDnWtNN13tAdNb2GpS%2F1%2FdRi6Hw; lui=75149908%3A1") // 也可以通过req.Cookie()的方式来设置cookie
+	res, err := client.Do(req)
+	defer res.Body.Close()
+	doc, err := goquery.NewDocumentFromResponse(res)
+*/
